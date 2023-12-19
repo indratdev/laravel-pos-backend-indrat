@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\StoreUserRequest;
 
 class AuthController extends Controller
 {
@@ -19,9 +20,37 @@ class AuthController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
-        //
+        $data = $request->all();
+        $data['password'] = Hash::make($request->password); //bcsqrt($request->password);
+
+        $user = \App\Models\User::where('email', $request->email)->first();
+
+        if ($user) {
+            return response([
+                'message' => ['Email Already Exists'],
+            ], 303);
+        }
+
+        // if (!Hash::check($request->password, $user->password)) {
+        //     return response([
+        //         'message' => ['Password is Wrong'],
+        //     ], 404);
+        // }
+
+        $newUser  = \App\Models\User::create($data);
+
+        // Authenticate the new user and generate a token
+        $token = $newUser->createToken('auth_token')->accessToken;
+
+        return response([
+            'user' => $newUser,
+            'token' => $token,
+        ], 200);
+
+
+
     }
 
     /**
