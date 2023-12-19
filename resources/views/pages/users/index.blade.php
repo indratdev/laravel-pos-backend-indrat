@@ -2,11 +2,14 @@
 
 @section('title', 'Users')
 
+
+
 @push('style')
     <!-- CSS Libraries -->
-    <link rel="stylesheet"
-        href="{{ asset('library/selectric/public/selectric.css') }}">
+    <link rel="stylesheet" href="{{ asset('library/selectric/public/selectric.css') }}">
+    <link rel="stylesheet" href="{{ asset('library/izitoast/dist/css/iziToast.min.css') }}">
 @endpush
+
 
 @section('main')
     <div class="main-content">
@@ -14,8 +17,7 @@
             <div class="section-header">
                 <h1>Users</h1>
                 <div class="section-header-button">
-                    <a href="{{ route('user.create') }}"
-                        class="btn btn-primary">Add New</a>
+                    <a href="{{ route('user.create') }}" class="btn btn-primary">Add New</a>
                 </div>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
@@ -23,43 +25,20 @@
                     <div class="breadcrumb-item">All Users</div>
                 </div>
             </div>
+
+
             <div class="section-body">
-                <div class="row">
+                {{-- <div class="row">
                     <div class="col-12">
                         @include('layouts.alert')
                     </div>
-                </div>
+                </div> --}}
+
                 <h2 class="section-title">Users</h2>
                 <p class="section-lead">
                     You can manage all Users, such as editing, deleting and more.
                 </p>
 
-                {{-- <div class="row">
-                    <div class="col-12">
-                        <div class="card mb-0">
-                            <div class="card-body">
-                                <ul class="nav nav-pills">
-                                    <li class="nav-item">
-                                        <a class="nav-link active"
-                                            href="#">All <span class="badge badge-white">5</span></a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link"
-                                            href="#">Draft <span class="badge badge-primary">1</span></a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link"
-                                            href="#">Pending <span class="badge badge-primary">1</span></a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link"
-                                            href="#">Trash <span class="badge badge-primary">0</span></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div> --}}
                 <div class="row mt-4">
                     <div class="col-12">
                         <div class="card">
@@ -76,12 +55,9 @@
                                     </select>
                                 </div>
                                 <div class="float-right">
-                                    <form method="GET", action="{{ route('user.index')}}">
+                                    <form method="GET", action="{{ route('user.index') }}">
                                         <div class="input-group">
-                                            <input type="text"
-                                                class="form-control"
-                                                placeholder="Search"
-                                                name='name'>
+                                            <input type="text" class="form-control" placeholder="Search" name='name'>
                                             <div class="input-group-append">
                                                 <button class="btn btn-primary"><i class="fas fa-search"></i></button>
                                             </div>
@@ -100,47 +76,44 @@
                                             <th>Created At</th>
                                             <th>Action</th>
                                         </tr>
-                                        @foreach ($users as $user )
-                                        <tr>
+                                        @foreach ($users as $user)
+                                            <tr>
 
-                                            <td>
-                                                {{$user->name}}
-                                            <td>
-                                                {{$user->email}}
-                                            <td>
-                                                {{$user->phone}}
+                                                <td>
+                                                    {{ $user->name }}
+                                                <td>
+                                                    {{ $user->email }}
+                                                <td>
+                                                    {{ $user->phone }}
 
-                                            </td>
-                                            <td>
-                                                {{$user->created_at}}
-                                            </td>
-                                            <td>
-                                                <div class="d-flex" justify-content-center>
-                                                    <a href="{{ route('user.edit', $user->id) }}"
-                                                        class="btn btn-sm btn-info btn-icon">
-                                                    <i class="fas fa-edit"></i>
-                                                    Edit
-                                                    </a>
+                                                </td>
+                                                <td>
+                                                    {{ $user->created_at }}
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex" justify-content-center>
+                                                        <a href="{{ route('user.edit', $user->id) }}"
+                                                            class="btn btn-sm btn-info btn-icon">
+                                                            <i class="fas fa-edit"></i>
+                                                            Edit
+                                                        </a>
 
-                                                    <form action="{{ route('user.destroy', $user->id) }}"
-                                                        method="POST"
-                                                        class="ml-2"
-                                                        >
-                                                        <input type="hidden" name="_method" value="DELETE">
-                                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                        <button
-                                                        class="btn btn-sm btn-danger btn-icon confirm-delete"
-                                                        {{-- onclick="confirmation(event)" --}}
-                                                        >
-                                                            <i class="fas fa-times"></i>
-                                                            Delete
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </td>
+                                                        <form action="{{ route('user.destroy', $user->id) }}" method="POST"
+                                                            class="ml-2">
+                                                            <input type="hidden" name="_method" value="DELETE">
+                                                            <input type="hidden" name="_token"
+                                                                value="{{ csrf_token() }}">
+                                                            <button class="btn btn-sm btn-danger btn-icon confirm-delete"
+                                                                {{-- onclick="confirmation(event)" --}}>
+                                                                <i class="fas fa-times"></i>
+                                                                Delete
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                </td>
 
 
-                                        </tr>
+                                            </tr>
                                         @endforeach
 
 
@@ -190,6 +163,12 @@
     </div>
 @endsection
 
+<script>
+    use RealRashid\ SweetAlert\ Facades\ Alert;
+
+    Alert::success('Success Title', 'Success Message');
+</script>
+
 
 
 @push('scripts')
@@ -199,43 +178,9 @@
     <!-- Page Specific JS File -->
     <script src="{{ asset('js/page/features-Users.js') }}"></script>
 
-    {{-- <script type="text/javascript">
-        // function confirmation(ev){
-        //     ev.preventDefault();
-        //     // var urlToRedirect = ev.currentTarget.getAttribute('');
-        //     var urlToRedirect = document.getElementById('deleteForm').submit();
+    <!-- JS Libraies -->
+    <script src="{{ asset('library/izitoast/dist/js/iziToast.min.js') }}"></script>
 
-        //     swal({
-        //         title:"Are you sure to delete this ?",
-        //         text: "You wont be able to revert this delete",
-        //         icon : "warning",
-        //         buttons : true,
-        //         dangerMode : true,
-        //     })
-
-        //     .then((willCancel){
-        //         if(willCancel){
-        //           urlToRedirect();
-        //         }
-        //     });
-        // }
-        function confirmation(ev) {
-            ev.preventDefault();
-            // var urlToRedirect = ev.currentTarget.getAttribute('href');
-            var urlToRedirect = document.getElementById('deleteForm').submit();
-            console.log(urlToRedirect);
-            swal({
-                title: "Are you sure to Delete this post",
-                text: "You will not be able to revert this!",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-            })
-            .then((willCancel) => {
-                if (willCancel) {
-                    urlToRedirect();
-                }
-            });
-            }
-    </script> --}}
+    <!-- Page Specific JS File -->
+    <script src="{{ asset('js/page/modules-toastr.js') }}"></script>
 @endpush

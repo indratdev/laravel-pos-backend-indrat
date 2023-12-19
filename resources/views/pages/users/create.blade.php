@@ -4,18 +4,12 @@
 
 @push('style')
     <!-- CSS Libraries -->
-    <link rel="stylesheet"
-        href="{{ asset('library/bootstrap-daterangepicker/daterangepicker.css') }}">
-    <link rel="stylesheet"
-        href="{{ asset('library/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css') }}">
-    <link rel="stylesheet"
-        href="{{ asset('library/select2/dist/css/select2.min.css') }}">
-    <link rel="stylesheet"
-        href="{{ asset('library/selectric/public/selectric.css') }}">
-    <link rel="stylesheet"
-        href="{{ asset('library/bootstrap-timepicker/css/bootstrap-timepicker.min.css') }}">
-    <link rel="stylesheet"
-        href="{{ asset('library/bootstrap-tagsinput/dist/bootstrap-tagsinput.css') }}">
+    <link rel="stylesheet" href="{{ asset('library/bootstrap-daterangepicker/daterangepicker.css') }}">
+    <link rel="stylesheet" href="{{ asset('library/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('library/select2/dist/css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('library/selectric/public/selectric.css') }}">
+    <link rel="stylesheet" href="{{ asset('library/bootstrap-timepicker/css/bootstrap-timepicker.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('library/bootstrap-tagsinput/dist/bootstrap-tagsinput.css') }}">
 @endpush
 
 @section('main')
@@ -31,20 +25,19 @@
             </div>
 
             <div class="section-body">
-                <h2 class="section-title">Advanced Forms</h2>
-                <p class="section-lead">We provide advanced input fields, such as date picker, color picker, and so on.</p>
+                <h2 class="section-title">User Forms</h2>
 
                 <div class="row">
                     <div class="col-12 ">
-                        <form action="{{ route('user.store')}}" method="POST">
-                        @csrf
+                        <form action="{{ route('user.store') }}" method="POST">
+                            @csrf
 
-                        <div class="card">
-                            <div class="card-header">
-                                <h4>Input Text</h4>
-                            </div>
-                            <div class="card-body">
-                                {{-- <div class="form-group">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>Input Text</h4>
+                                </div>
+                                <div class="card-body">
+                                    {{-- <div class="form-group">
                                     <label>Name</label>
                                     <input type="text"
                                         class="form-control @error('name')
@@ -56,100 +49,85 @@
                                     </div>
                                 @enderror
                                 </div> --}}
-                                <div class="form-group">
-                                    <label for="fullname">Fullname</label>
-                                    <input id="fullname"
-                                        type="text"
-                                        class="form-control @error('name')
+                                    <div class="form-group">
+                                        <label for="fullname">Fullname</label>
+                                        <input id="fullname" type="text"
+                                            class="form-control @error('name')
                                             is-invalid
                                         @enderror "
-                                        name="name"
-                                        autofocus>
-                                    @error('name')
-                                        <div class="invalid-feedback">
-                                            {{$message}}
-                                        </div>
-                                    @enderror
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="email">Email</label>
-                                    <input id="email"
-                                        type="email"
-                                        class="form-control @error('email')
-                                            is-invalid
-                                        @enderror"
-                                        name="email">
-                                    @error('email')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="password"
-                                        class="d-block">Password</label>
-                                    <input id="password"
-                                        type="password"
-                                        class="form-control pwstrength @error('password')
-                                            is-invalid
-                                        @enderror"
-                                        data-indicator="pwindicator"
-                                        name="password">
-                                    @error('password')
-                                        <div>
-                                            {{$message}}
-                                        </div>
-                                    @enderror
-                                    <div id="pwindicator"
-                                        class="pwindicator">
-                                        <div class="bar"></div>
-                                        <div class="label"></div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Phone Number</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <i class="fas fa-phone"></i>
+                                            name="name" autofocus>
+                                        @error('name')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
                                             </div>
-                                        </div>
-                                        <input type="number" name="phone"
-                                            class="form-control">
+                                        @enderror
                                     </div>
-                                </div>
 
-                                <div class="form-group">
-                                    <label>Roles</label>
-                                    <div class="selectgroup w-100">
-                                        <label class="selectgroup-item">
-                                            <input type="radio"
-                                                name="roles"
-                                                value="ADMIN"
-                                                class="selectgroup-input"
-                                                checked="">
-                                            <span class="selectgroup-button">ADMIN</span>
-                                        </label>
-                                        <label class="selectgroup-item">
-                                            <input type="radio"
-                                                name="roles"
-                                                value="MANAGER"
-                                                class="selectgroup-input">
-                                            <span class="selectgroup-button">MANAGER</span>
-                                        </label>
-                                        <label class="selectgroup-item">
-                                            <input type="radio"
-                                                name="roles"
-                                                value="STAFF"
-                                                class="selectgroup-input">
-                                            <span class="selectgroup-button">STAFF</span>
-                                        </label>
+                                    <div class="form-group">
+                                        <label for="email">Email</label>
+                                        <input id="email" type="email"
+                                            class="form-control @error('email')
+                                            is-invalid
+                                        @enderror"
+                                            name="email">
+                                        @error('email')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+
                                     </div>
-                                </div>
+
+                                    <div class="form-group">
+                                        <label for="password" class="d-block">Password</label>
+                                        <input id="password" type="password"
+                                            class="form-control pwstrength @error('password')
+                                            is-invalid
+                                        @enderror"
+                                            data-indicator="pwindicator" name="password">
+                                        @error('password')
+                                            <div>
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                        <div id="pwindicator" class="pwindicator">
+                                            <div class="bar"></div>
+                                            <div class="label"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Phone Number</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <i class="fas fa-phone"></i>
+                                                </div>
+                                            </div>
+                                            <input type="number" name="phone" class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Roles</label>
+                                        <div class="selectgroup w-100">
+                                            <label class="selectgroup-item">
+                                                <input type="radio" name="roles" value="ADMIN"
+                                                    class="selectgroup-input" checked="">
+                                                <span class="selectgroup-button">ADMIN</span>
+                                            </label>
+                                            <label class="selectgroup-item">
+                                                <input type="radio" name="roles" value="MANAGER"
+                                                    class="selectgroup-input">
+                                                <span class="selectgroup-button">MANAGER</span>
+                                            </label>
+                                            <label class="selectgroup-item">
+                                                <input type="radio" name="roles" value="STAFF"
+                                                    class="selectgroup-input">
+                                                <span class="selectgroup-button">STAFF</span>
+                                            </label>
+                                        </div>
+                                    </div>
 
 
                                     {{-- <div class="form-group">
@@ -164,7 +142,7 @@
 
 
 
-                                {{-- <div class="form-group">
+                                    {{-- <div class="form-group">
                                     <label>Password Strength</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
@@ -221,14 +199,14 @@
                                     <input type="text"
                                         class="form-control inputtags">
                                 </div> --}}
+                                </div>
+                                <div class="card-footer text-right">
+                                    <button class="btn btn-primary">
+                                        Submit
+                                    </button>
+                                </div>
                             </div>
-                            <div class="card-footer text-right">
-                                <button class="btn btn-primary">
-                                    Submit
-                                </button>
-                            </div>
-                        </div>
-                        {{-- <div class="card">
+                            {{-- <div class="card">
                             <div class="card-header">
                                 <h4>Toggle Switches</h4>
                             </div>
@@ -275,7 +253,7 @@
                                 </div>
                             </div>
                         </div> --}}
-                        {{-- <div class="card">
+                            {{-- <div class="card">
                             <div class="card-header">
                                 <h4>Image Check</h4>
                             </div>
@@ -367,7 +345,7 @@
                                 </div>
                             </div>
                         </div> --}}
-                        {{-- <div class="card">
+                            {{-- <div class="card">
                             <div class="card-header">
                                 <h4>Color</h4>
                             </div>
@@ -451,7 +429,7 @@
                             </div>
 
                         </div> --}}
-                    </form>
+                        </form>
                     </div>
 
                     {{-- <div class="col-12 col-md-6 col-lg-6">
