@@ -80,7 +80,7 @@
                                                     {{ $product->category }}
                                                 </td>
                                                 <td>
-                                                    {{ $product->price }}
+                                                    {{ Number::currency($product->price, 'IDR') }}
                                                 </td>
                                                 <td>{{ $product->created_at }}</td>
                                                 <td>
