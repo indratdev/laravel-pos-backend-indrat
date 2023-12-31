@@ -26,5 +26,8 @@ Route::post('login', [\App\Http\Controllers\Api\AuthController::class, 'login'])
 // register
 Route::post('/store', [\App\Http\Controllers\Api\AuthController::class, 'store']);
 
+// logout
+Route::post('logout',[\App\Http\App\Http\Controllers\AuthController::class, 'logout'])->middleware('auth:sanctum');
+
 // api resource product
 Route::apiResource('products', \App\Http\Controllers\Api\ProductController::class)->middleware('auth:sanctum');
