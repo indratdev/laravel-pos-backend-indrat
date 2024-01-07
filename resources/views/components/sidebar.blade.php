@@ -36,6 +36,18 @@
                 </ul>
             </li>
 
+            <li class="nav-item dropdown">
+                <a href="#"
+                    class="nav-link has-dropdown"><i class="fa-solid fa-users"></i></><span>Customers</span></a>
+                <ul class="dropdown-menu">
+                    <li class=''>
+                        <a class="nav-link"
+                            href="{{ route('customers.index') }}">All Customers</a>
+                    </li>
+
+                </ul>
+            </li>
+
 
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown"><i class="fa-solid fa-tags"></i><span>Products</span></a>

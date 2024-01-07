@@ -31,3 +31,8 @@ Route::post('logout',[\App\Http\App\Http\Controllers\AuthController::class, 'log
 
 // api resource product
 Route::apiResource('products', \App\Http\Controllers\Api\ProductController::class)->middleware('auth:sanctum');
+
+
+// Route::middleware('auth:sanctum')->get('/customers', function (Request $request) {
+//     return $request->customers();
+// });

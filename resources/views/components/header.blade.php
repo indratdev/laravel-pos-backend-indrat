@@ -225,6 +225,6 @@
                     @csrf
                 </form>
             </div>
-        </li>
+        </li> 
     </ul>
 </nav>
