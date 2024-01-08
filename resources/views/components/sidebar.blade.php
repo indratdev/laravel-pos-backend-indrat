@@ -1,20 +1,19 @@
 <div class="main-sidebar sidebar-style-2">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="index.html">INDRAT POS</a>
+            <a href="index.html">LAUNDRY POS</a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
-            <a href="{{ route('home')}}">IP</a>
+            <a href="{{ route('home') }}">IP</a>
         </div>
         <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
             <li class="nav-item dropdown">
-                <a href="#"
-                    class="nav-link has-dropdown"><i class="fa-solid fa-chart-line"></i><span>Dashboard</span></a>
+                <a href="#" class="nav-link has-dropdown"><i
+                        class="fa-solid fa-chart-line"></i><span>Dashboard</span></a>
                 <ul class="dropdown-menu">
                     <li class='{{ Request::is('dashboard-general-dashboard') ? 'active' : '' }}'>
-                        <a class="nav-link"
-                            href="{{ route('home') }}">General Dashboard</a>
+                        <a class="nav-link" href="{{ route('home') }}">General Dashboard</a>
                     </li>
                     {{-- <li class="{{ Request::is('dashboard-ecommerce-dashboard') ? 'active' : '' }}">
                         <a class="nav-link"
@@ -25,24 +24,22 @@
 
             {{-- <li class="menu-header">Users</li> --}}
             <li class="nav-item dropdown">
-                <a href="#"
-                    class="nav-link has-dropdown"><i class="fa-solid fa-users"></i></><span>Users</span></a>
+                <a href="#" class="nav-link has-dropdown"><i class="fa-solid fa-users"></i></>
+                    <span>Users</span></a>
                 <ul class="dropdown-menu">
                     <li class=''>
-                        <a class="nav-link"
-                            href="{{ route('user.index') }}">All Users</a>
+                        <a class="nav-link" href="{{ route('user.index') }}">All Users</a>
                     </li>
 
                 </ul>
             </li>
 
             <li class="nav-item dropdown">
-                <a href="#"
-                    class="nav-link has-dropdown"><i class="fa-solid fa-users"></i></><span>Customers</span></a>
+                <a href="#" class="nav-link has-dropdown"><i class="fa-solid fa-users"></i></>
+                    <span>Customers</span></a>
                 <ul class="dropdown-menu">
                     <li class=''>
-                        <a class="nav-link"
-                            href="{{ route('customers.index') }}">All Customers</a>
+                        <a class="nav-link" href="{{ route('customer.index') }}">All Customers</a>
                     </li>
 
                 </ul>
@@ -50,7 +47,8 @@
 
 
             <li class="nav-item dropdown">
-                <a href="#" class="nav-link has-dropdown"><i class="fa-solid fa-tags"></i><span>Products</span></a>
+                <a href="#" class="nav-link has-dropdown"><i
+                        class="fa-solid fa-tags"></i><span>Products</span></a>
                 <ul class="dropdown-menu">
                     <li>
                         <a class="nav-link" href="{{ route('product.index') }}">All Products</a>

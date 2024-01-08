@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CustomerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +43,7 @@ Route::middleware(['auth'])->group(function () {
     })->name('home');
     Route::resource('user', UserController::class);
     Route::resource('product', ProductController::class);
+    Route::resource('customer', CustomerController::class);
 });
 
 // Route::middleware(['auth'])->group(function () {

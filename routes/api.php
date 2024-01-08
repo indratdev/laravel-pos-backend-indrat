@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\Api\AuthController;
 use \App\Http\Controllers\Api\ProductController;
+use \App\Http\Controllers\Api\CustomerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,10 +28,13 @@ Route::post('login', [\App\Http\Controllers\Api\AuthController::class, 'login'])
 Route::post('/store', [\App\Http\Controllers\Api\AuthController::class, 'store']);
 
 // logout
-Route::post('logout',[\App\Http\App\Http\Controllers\AuthController::class, 'logout'])->middleware('auth:sanctum');
+Route::post('logout',[\App\Http\Controllers\Api\AuthController::class, 'logout'])->middleware('auth:sanctum');
 
 // api resource product
 Route::apiResource('products', \App\Http\Controllers\Api\ProductController::class)->middleware('auth:sanctum');
+
+// api customers
+Route::apiResource('customers', \App\Http\Controllers\Api\CustomerController::class)->middleware('auth:sanctum');
 
 
 // Route::middleware('auth:sanctum')->get('/customers', function (Request $request) {
