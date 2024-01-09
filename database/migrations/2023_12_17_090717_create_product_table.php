@@ -19,9 +19,9 @@ return new class extends Migration
             //price
             $table->integer('price')->default(0);
             //stock
-            $table->integer('stock')->default(0);
+            $table->integer('working_time')->default(0);
             //category enum (food, drink, snack)
-            $table->enum('category', ['food', 'drink', 'snack']);
+            $table->enum('category', ['satuan', 'kiloan']);
             //image
             $table->string('image')->nullable();
             $table->timestamps();

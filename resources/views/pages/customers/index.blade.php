@@ -123,7 +123,7 @@
 
                                     </table>
                                 </div>
-                                <div class="float-right">
+                                 <div class="float-right">
                                     {{ $customers->withQueryString()->links() }}
                                 </div>
                             </div>

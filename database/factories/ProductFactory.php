@@ -20,8 +20,8 @@ class ProductFactory extends Factory
             'name' => $this->faker->name,
             'description' => $this->faker->text,
             'price' => $this->faker->numberBetween(10000, 100000),
-            'stock' => $this->faker->numberBetween(1, 100),
-            'category' => $this->faker->randomElement(['food', 'drink', 'snack']),
+            'working_time' => $this->faker->numberBetween(1, 100),
+            'category' => $this->faker->randomElement(['satuan', 'kiloan']),
             'image' => $this->faker->imageUrl(),
         ];
     }

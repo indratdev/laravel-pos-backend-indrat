@@ -63,13 +63,13 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label>Stock</label>
+                                <label>Working Time</label>
                                 <input type="number"
-                                    class="form-control @error('stock')
+                                    class="form-control @error('working_time')
                                 is-invalid
                             @enderror"
-                                    name="stock">
-                                @error('stock')
+                                    name="working_time">
+                                @error('working_time')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
@@ -80,19 +80,14 @@
                                 <label class="form-label">Category</label>
                                 <div class="selectgroup w-100">
                                     <label class="selectgroup-item">
-                                        <input type="radio" name="category" value="food" class="selectgroup-input"
+                                        <input type="radio" name="category" value="satuan" class="selectgroup-input"
                                             checked="">
-                                        <span class="selectgroup-button">Food</span>
+                                        <span class="selectgroup-button">Satuan</span>
                                     </label>
                                     <label class="selectgroup-item">
-                                        <input type="radio" name="category" value="drink" class="selectgroup-input">
-                                        <span class="selectgroup-button">Drink</span>
+                                        <input type="radio" name="category" value="kiloan" class="selectgroup-input">
+                                        <span class="selectgroup-button">Kiloan</span>
                                     </label>
-                                    <label class="selectgroup-item">
-                                        <input type="radio" name="category" value="snack" class="selectgroup-input">
-                                        <span class="selectgroup-button">Snack</span>
-                                    </label>
-
                                 </div>
                             </div>
 

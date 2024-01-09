@@ -15,11 +15,50 @@ class CustomerController extends Controller
                 return $query->where('name', 'like', '%' . $name . '%');
             })
             ->orderBy('created_at', 'desc')
-            ->paginate(10);
+            ->paginate(2);
         //sort by created_at desc
 
         return view('pages.customers.index', compact('customers'));
     }
+
+    // public function index(Request $request)
+    // {
+    //     //get data customers
+    //     // $customers = DB::table('customers')
+    //     //     ->when($request->input('name'), function ($query, $name) {
+    //     //         return $query->where('name', 'like', '%' . $name . '%');
+    //     //     })
+    //     //     ->orderBy('created_at', 'desc')
+    //     //     ->paginate(10);
+    //     //sort by created_at desc
+    //     // $customers = DB::select('CALL getAllCustomer();');
+
+    //     // return view('pages.customers.index', compact('data'));
+
+    // //     $page = request('page', 1);
+    // //     $pageSize = 2;
+    // //     $results = DB::select('CALL getAllCustomer();');
+    // //     $offset = ($page * $pageSize) - $pageSize;
+    // //     $data = array_slice($results, $offset, $pageSize, true);
+    // //     $paginator = new \Illuminate\Pagination\LengthAwarePaginator($data, count($data), $pageSize, $page);
+
+    // // return view('pages.customers.index', ['customers' => $paginator]);
+    // $page = Input::get('page', 1);
+
+    // $paginate = 2;
+
+    // $data = DB::select('CALL getAllCustomer();');
+
+    // $offSet = ($page * $paginate) - $paginate;
+
+    // $itemsForCurrentPage = array_slice($data, $offSet, $paginate, true);
+
+    // $customers = new IlluminatePaginationLengthAwarePaginator($itemsForCurrentPage, count($data), $paginate, $page);
+
+    // return view('pages.customers.index',compact('customers'));
+    // }
+
+
 
     public function create()
     {

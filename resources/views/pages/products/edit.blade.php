@@ -64,13 +64,13 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label>Stock</label>
+                                <label>Working Time</label>
                                 <input type="number"
-                                    class="form-control @error('stock')
+                                    class="form-control @error('working_time')
                                 is-invalid
                             @enderror"
-                                    name="stock" value="{{ $product->stock }}">
-                                @error('stock')
+                                    name="working_time" value="{{ $product->working_time }}">
+                                @error('working_time')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
@@ -80,20 +80,16 @@
                                 <label class="form-label">Category</label>
                                 <div class="selectgroup w-100">
                                     <label class="selectgroup-item">
-                                        <input type="radio" name="category" value="food" class="selectgroup-input"
-                                            @if ($product->category == 'food') checked @endif>
-                                        <span class="selectgroup-button">Food</span>
+                                        <input type="radio" name="category" value="satuan" class="selectgroup-input"
+                                            @if ($product->category == 'satuan') checked @endif>
+                                        <span class="selectgroup-button">Satuan</span>
                                     </label>
                                     <label class="selectgroup-item">
-                                        <input type="radio" name="category" value="drink" class="selectgroup-input"
-                                            @if ($product->category == 'drink') checked @endif>
-                                        <span class="selectgroup-button">Drink</span>
+                                        <input type="radio" name="category" value="kiloan" class="selectgroup-input"
+                                            @if ($product->category == 'kiloan') checked @endif>
+                                        <span class="selectgroup-button">Kiloan</span>
                                     </label>
-                                    <label class="selectgroup-item">
-                                        <input type="radio" name="category" value="snack" class="selectgroup-input"
-                                            @if ($product->category == 'snack') checked @endif>
-                                        <span class="selectgroup-button">Snack</span>
-                                    </label>
+
 
                                 </div>
                             </div>
