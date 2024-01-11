@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -36,9 +37,6 @@ class ProductController extends Controller
             'image' => 'image|mimes:png,jpg,jpeg'
         ]);
 
-
-
-
         // \App\Models\Product::create($data);
         $product = new \App\Models\Product;
         $product->name = $request->name;
@@ -63,11 +61,50 @@ class ProductController extends Controller
         return view('pages.products.edit', compact('product'));
     }
 
+    // public function update(Request $request, $id)
+    // {
+    //     $data = $request->all();
+    //     $product = \App\Models\Product::findOrFail($id);
+    //     $product->update($data);
+    //     return redirect()->route('product.index')->with('success', 'Product successfully updated');
+    // }
+
     public function update(Request $request, $id)
     {
+        $request->validate([
+            // 'name' => 'required|min:3|unique:products',
+            'price' => 'required|integer',
+            'working_time' => 'required|integer',
+            'category' => 'required|in:satuan,kiloan',
+            'image' => 'image|mimes:png,jpg,jpeg'
+        ]);
+
+
         $data = $request->all();
         $product = \App\Models\Product::findOrFail($id);
-        $product->update($data);
+
+
+        if ($request->hasFile('image')) {
+            // Delete the existing image file
+            $imageOld = $product->image;
+            Storage::delete('public/products/'.$imageOld);
+
+            $filename = date("Ymd").time(). '.' . $request->image->extension();
+            $request->image->storeAs('public/products', $filename);
+
+            // Update the model with the new file path
+            $product->image = $filename;
+        }
+         // Update other fields
+        $product->name = $request->input('name');
+        $product->price = $request->input('price');
+        $product->working_time = $request->input('working_time');
+        $product->category = $request->input('category');
+        $product->updated_at = date('Y-m-d H:i:s');
+
+        // Save the model
+        $product->save();
+
         return redirect()->route('product.index')->with('success', 'Product successfully updated');
     }
 

@@ -30,7 +30,7 @@
 
 
                 <div class="card">
-                    <form action="{{ route('product.update', $product) }}" method="POST">
+                    <form action="{{ route('product.update', $product) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="card-header">
@@ -96,7 +96,13 @@
                             <div class="form-group">
                                 <label>Photo Product</label>
                                 <div class="col-sm-9">
-                                    <input type="file" class="form-control" name="image" @error('image')
+                                    <img src="{{ asset('storage/products/' . $product->image) }}" alt=""
+                                        width="100px" class="img-thumbnail">
+                                </div>
+
+                                <div class="col-sm-9">
+                                    <input type="file" class="form-control" name="image"
+                                        @error('image')
                                     is-invalid
                                     @enderror>
                                 </div>
