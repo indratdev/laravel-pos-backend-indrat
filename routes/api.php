@@ -33,6 +33,11 @@ Route::post('logout',[\App\Http\Controllers\Api\AuthController::class, 'logout']
 // api resource product
 Route::apiResource('products', \App\Http\Controllers\Api\ProductController::class)->middleware('auth:sanctum');
 
+
+Route::middleware('auth:sanctum')->group( function () {
+    Route::resource('products', ProductController::class);
+});
+
 // api customers
 Route::apiResource('customers', \App\Http\Controllers\Api\CustomerController::class)->middleware('auth:sanctum');
 
