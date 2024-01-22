@@ -20,7 +20,9 @@ return new class extends Migration
             //quantity
             $table->integer('quantity');
             //total price
-            $table->integer('total_price');
+            // $table->integer('total_price');
+
+            // $table->json('product');
             $table->timestamps();
         });
     }

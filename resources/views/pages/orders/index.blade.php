@@ -34,7 +34,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4>All Orders</h4>
-                            </div>Orders
+                            </div>
                             <div class="card-body">
 
                                 {{-- <div class="float-right">
@@ -53,7 +53,7 @@
                                 <div class="table-responsive">
                                     <table class="table-striped table">
                                         <tr>
-
+                                            <th>Transaction ID</th>
                                             <th>Transaction Time</th>
                                             <th>Total Price</th>
                                             <th>Total Item</th>
@@ -61,20 +61,26 @@
                                         </tr>
                                         @foreach ($orders as $order)
                                             <tr>
+                                                <td>
+                                                    <a href="{{ route('order.show', $order->id) }}">{{ $order->id }}</a>
+                                                </td>
 
-                                                <td><a
-                                                        href="{{ route('order.show', $order->id) }}">{{ $order->transaction_time }}</a>
+                                                <td>
+                                                    {{-- <a
+                                                        href="{{ route('order.show', $order->id) }}">{{ $order->transaction_time }}</a> --}}
+                                                    {{ $order->transaction_time }}
                                                 </td>
                                                 <td>
                                                     {{ $order->total_price }}
                                                 </td>
                                                 <td>
-                                                    {{ $order->total_item }}
+                                                    {{ $order->total_quantity }}
                                                 </td>
                                                 <td>
                                                     {{ $order->kasir->name }}
 
                                                 </td>
+
 
                                             </tr>
                                         @endforeach

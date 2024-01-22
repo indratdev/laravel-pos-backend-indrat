@@ -13,17 +13,17 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            //transaction time
             $table->timestamp('transaction_time');
-            //total price
-            $table->integer('total_price');
-            //total item
-            $table->integer('total_item');
-            //kasir id
-            $table->foreignId('kasir_id')->constrained('users');
-            //payment method
-            $table->enum('payment_method', ['Tunai', 'QRIS']);
-
+            $table->decimal('total_price', 10, 2);
+            $table->integer('total_quantity');
+            $table->foreignId('cashier_id')->constrained('users');
+            $table->enum('payment_method', ['cash', 'qris']);
+            $table->integer('customer_id');
+            $table->decimal('amount_payment', 10, 2);
+            // $table->integer('cashier_id');
+            $table->integer('is_sync');
+            $table->string('cashier_name');
+            // $table->json('order_items');
             $table->timestamps();
         });
     }

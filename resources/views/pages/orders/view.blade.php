@@ -68,7 +68,8 @@
                                                     {{ $item->quantity }}
                                                 </td>
                                                 <td>
-                                                    {{ $item->total_price }}
+                                                    {{-- {{ $item->total_price }} --}}
+                                                    {{ $item->quantity * $item->product->price }}
 
                                                 </td>
 

@@ -13,13 +13,20 @@ class Order extends Model
     [
         'transaction_time',
         'total_price',
+        'total_quantity',
         'total_item',
-        'kasir_id',
-        'payment_method'
+        // 'kasir_id',
+        'payment_method',
+        'customer_id',
+        'amount_payment',
+        'cashier_id',
+        'is_sync',
+        'cashier_name',
+        'order_items'
     ];
 
     public function kasir()
     {
-        return $this->belongsTo(User::class, 'kasir_id', 'id');
+        return $this->belongsTo(User::class, 'cashier_id', 'id');
     }
 }
