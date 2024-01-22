@@ -114,9 +114,21 @@ class OrderController extends Controller
         }
 
         // Respon JSON
-        return response()->json([
-            'success' => true,
-            'message' => 'Order Created'
-        ], 201);
+        // return response()->json([
+        //     'success' => true,
+        //     'message' => 'Order Created'
+        // ], 201);
+        if ($order) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Order Created',
+                'data' => $order
+            ], 201);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Order Failed to Save',
+            ], 409);
+        }
     }
 }
