@@ -119,10 +119,16 @@ class OrderController extends Controller
         //     'message' => 'Order Created'
         // ], 201);
         if ($order) {
+            // $orderItems = $order->orderItems;
+            $orderItems = $data['order_items'];
             return response()->json([
                 'success' => true,
                 'message' => 'Order Created',
-                'data' => $order
+                // 'data' => $order
+                'data' => [
+                    'order' => $order,
+                    'order_items' => $orderItems
+                ]
             ], 201);
         } else {
             return response()->json([
