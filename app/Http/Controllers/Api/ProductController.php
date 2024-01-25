@@ -29,7 +29,7 @@ class ProductController extends Controller
         $request->validate([
             'name' => 'required|min:3',
             'price' => 'required|integer',
-            'working_time' => 'required|integer',
+            'working_time' => 'required|numeric',
             'category' => 'required|in:satuan,kiloan',
             'image' => 'image|mimes:png,jpg,jpeg'
         ]);
@@ -40,7 +40,7 @@ class ProductController extends Controller
         $product = \App\Models\Product::create([
             'name' => $request->name,
             'price' => (int) $request->price,
-            'working_time' => (int) $request->stock,
+            'working_time' => (int) $request->working_time,
             'category' => $request->category,
             'image' => $filename,
         ]);
