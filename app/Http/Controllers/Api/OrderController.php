@@ -7,6 +7,18 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
+
+    public function index()
+    {
+        //all orders
+        $orders = \App\Models\Order::with('orderItems')->orderBy('id', 'desc')->get();
+        return response()->json([
+            'success' => true,
+            'message' => 'List Data Order',
+            'data' => $orders
+        ], 200);
+    }
+
     //store order and order item
     // public function store(Request $request)
     // {
