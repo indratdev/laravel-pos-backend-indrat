@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-
     public function index()
     {
         //all orders
@@ -125,18 +124,11 @@ class OrderController extends Controller
             ]);
         }
 
-        // Respon JSON
-        // return response()->json([
-        //     'success' => true,
-        //     'message' => 'Order Created'
-        // ], 201);
         if ($order) {
-            // $orderItems = $order->orderItems;
             $orderItems = $data['order_items'];
             return response()->json([
                 'success' => true,
                 'message' => 'Order Created',
-                // 'data' => $order
                 'data' => [
                     'order' => $order,
                     'order_items' => $orderItems
