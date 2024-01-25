@@ -15,7 +15,8 @@ class CustomerController extends Controller
                 return $query->where('name', 'like', '%' . $name . '%');
             })
             ->orderBy('created_at', 'desc')
-            ->paginate(2);
+            ->paginate(25);
+
         //sort by created_at desc
 
         return view('pages.customers.index', compact('customers'));
