@@ -20,10 +20,10 @@ return new class extends Migration
             $table->enum('payment_method', ['cash', 'qris']);
             $table->integer('customer_id');
             $table->decimal('amount_payment', 10, 2);
-            // $table->integer('cashier_id');
             $table->integer('is_sync');
             $table->string('cashier_name');
-            // $table->json('order_items');
+            $table->string('status')->nullable();
+            $table->string('status_payment')->nullable();
             $table->timestamps();
         });
     }
@@ -33,6 +33,7 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('order_items');
         Schema::dropIfExists('orders');
     }
 };

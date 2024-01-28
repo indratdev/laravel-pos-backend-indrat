@@ -15,13 +15,14 @@ class Order extends Model
         'total_price',
         'total_quantity',
         'total_item',
-        // 'kasir_id',
         'payment_method',
         'customer_id',
         'amount_payment',
         'cashier_id',
         'is_sync',
         'cashier_name',
+        'status',
+        'status_payment',
         'order_items'
     ];
 

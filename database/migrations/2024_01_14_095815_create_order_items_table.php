@@ -13,16 +13,13 @@ return new class extends Migration
     {
         Schema::create('order_items', function (Blueprint $table) {
             $table->id();
-            //order id
-            $table->foreignId('order_id')->constrained('orders');
-            //product id
-            $table->foreignId('product_id')->constrained('products');
-            //quantity
-            $table->integer('quantity');
-            //total price
-            // $table->integer('total_price');
 
-            // $table->json('product');
+            $table->foreignId('order_id')->constrained('orders');
+
+            $table->foreignId('product_id')->constrained('products');
+
+            $table->integer('quantity');
+
             $table->timestamps();
         });
     }
