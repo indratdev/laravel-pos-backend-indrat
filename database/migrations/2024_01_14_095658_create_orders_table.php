@@ -20,6 +20,7 @@ return new class extends Migration
             $table->enum('payment_method', ['cash', 'qris']);
             $table->integer('customer_id');
             $table->decimal('amount_payment', 10, 2);
+            $table->decimal('amount_changes', 10, 2);
             $table->integer('is_sync');
             $table->string('cashier_name');
             $table->string('status')->nullable();

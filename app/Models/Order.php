@@ -18,6 +18,7 @@ class Order extends Model
         'payment_method',
         'customer_id',
         'amount_payment',
+        'amount_changes',
         'cashier_id',
         'is_sync',
         'cashier_name',

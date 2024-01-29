@@ -106,6 +106,7 @@ class OrderController extends Controller
             'payment_method' => $data['payment_method'],
             'customer_id' => $data['customer_id'],
             'amount_payment' => $data['amount_payment'],
+            'amount_changes' => $data['amount_changes'],
             'cashier_id' => $data['cashier_id'],
             'is_sync' => $data['is_sync'],
             'cashier_name' => $data['cashier_name'],
