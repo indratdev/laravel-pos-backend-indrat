@@ -45,6 +45,11 @@ Route::apiResource('customers', \App\Http\Controllers\Api\CustomerController::cl
 // api resource order
 Route::apiResource('orders', \App\Http\Controllers\Api\OrderController::class)->middleware('auth:sanctum');
 
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('/orders/status/{status}', [OrderController::class, 'getOrderByStatus']);
+});
+
+
 // Route::middleware('auth:sanctum')->get('/customers', function (Request $request) {
 //     return $request->customers();
 // });

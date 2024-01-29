@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -16,6 +17,28 @@ class OrderController extends Controller
             'message' => 'List Data Order',
             'data' => $orders
         ], 200);
+    }
+
+    public function getOrderByStatus($status)
+    {
+        // $orders = DB::table('orders')
+        //     ->where('status', $status)
+        //     ->where('status_payment', 'paid')
+        //     ->get()
+        //     ;
+        $orders = \App\Models\Order::with('customers', 'orderItems')
+            ->where('status', $status)
+            ->where('status_payment', 'paid')
+            ->orderBy('id', 'desc')
+            ->get();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'List Data Order',
+            'data' => $orders
+        ], 200);
+
+
     }
 
     //store order and order item
@@ -107,6 +130,8 @@ class OrderController extends Controller
             'customer_id' => $data['customer_id'],
             'amount_payment' => $data['amount_payment'],
             'amount_changes' => $data['amount_changes'],
+            'status' => $data['status'],
+            'status_payment' => $data['status_payment'],
             'cashier_id' => $data['cashier_id'],
             'is_sync' => $data['is_sync'],
             'cashier_name' => $data['cashier_name'],
