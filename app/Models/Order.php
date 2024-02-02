@@ -24,7 +24,10 @@ class Order extends Model
         'cashier_name',
         'status',
         'status_payment',
-        'order_items'
+        'order_items',
+        'queue_on',
+        'process_on',
+        'finish_on'
     ];
 
     public function kasir()

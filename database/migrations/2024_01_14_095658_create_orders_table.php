@@ -25,6 +25,9 @@ return new class extends Migration
             $table->string('cashier_name');
             $table->string('status')->nullable();
             $table->string('status_payment')->nullable();
+            $table->timestamp('queue_on')->nullable();
+            $table->timestamp('process_on')->nullable();
+            $table->timestamp('finish_on')->nullable();
             $table->timestamps();
         });
     }
