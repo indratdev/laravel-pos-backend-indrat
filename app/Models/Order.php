@@ -22,12 +22,17 @@ class Order extends Model
         'cashier_id',
         'is_sync',
         'cashier_name',
+        'receipt_no',
         'status',
         'status_payment',
         'order_items',
         'queue_on',
+        'queue_by',
         'process_on',
-        'finish_on'
+        'process_by',
+        'finish_on',
+        'finish_by',
+        'deleted'
     ];
 
     public function kasir()

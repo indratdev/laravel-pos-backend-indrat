@@ -19,13 +19,19 @@ class OrderController extends Controller
         ], 200);
     }
 
+    public function generateReceiptNo($transaction_time)
+    {
+        $fileName = date("Ymd") . '-';
+        $countTransaction = DB::select('CALL getMaxTransactionMonth(?)', [$transaction_time]);
+        // Ambil nilai pertama dari hasil query (asumsi hasil query berupa objek stdclass)
+        $countValue = reset($countTransaction)->counts;
+        $result = $fileName . $countValue;
+        return $result;
+    }
+
+
     public function getOrderByStatus($status)
     {
-        // $orders = DB::table('orders')
-        //     ->where('status', $status)
-        //     ->where('status_payment', 'paid')
-        //     ->get()
-        //     ;
         $orders = \App\Models\Order::with('customers', 'orderItems')
             ->where('status', $status)
             ->where('status_payment', 'paid')
@@ -37,8 +43,6 @@ class OrderController extends Controller
             'message' => 'List Data Order',
             'data' => $orders
         ], 200);
-
-
     }
 
     //store order and order item
@@ -119,6 +123,7 @@ class OrderController extends Controller
 
         // Mendapatkan data JSON dari request
         $data = $request->json()->all();
+        $receiptNo = $this->generateReceiptNo($data['transaction_time']);
 
         // Membuat pesanan
         // $order = Order::create([
@@ -135,6 +140,7 @@ class OrderController extends Controller
             'cashier_id' => $data['cashier_id'],
             'is_sync' => $data['is_sync'],
             'cashier_name' => $data['cashier_name'],
+            'receipt_no' => $receiptNo,
         ]);
 
         // Membuat item pesanan
