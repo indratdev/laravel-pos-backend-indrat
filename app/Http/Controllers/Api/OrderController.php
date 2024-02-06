@@ -38,6 +38,16 @@ class OrderController extends Controller
             ->orderBy('id', 'desc')
             ->get();
 
+        if ($orders->isEmpty()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'No orders found with the specified criteria',
+                'data' => []
+            // ], 404); // Menggunakan status 404 Not Found untuk menunjukkan bahwa data tidak ditemukan
+            ], 200);
+        }
+
+
         return response()->json([
             'success' => true,
             'message' => 'List Data Order',
