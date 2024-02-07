@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class OrderController extends Controller
 {
@@ -43,7 +44,7 @@ class OrderController extends Controller
                 'success' => true,
                 'message' => 'No orders found with the specified criteria',
                 'data' => []
-            // ], 404); // Menggunakan status 404 Not Found untuk menunjukkan bahwa data tidak ditemukan
+                // ], 404); // Menggunakan status 404 Not Found untuk menunjukkan bahwa data tidak ditemukan
             ], 200);
         }
 
@@ -151,6 +152,8 @@ class OrderController extends Controller
             'is_sync' => $data['is_sync'],
             'cashier_name' => $data['cashier_name'],
             'receipt_no' => $receiptNo,
+            'queue_on' => $data['transaction_time'],
+            'queue_by' => $data['cashier_id'],
         ]);
 
         // Membuat item pesanan
@@ -183,4 +186,73 @@ class OrderController extends Controller
             ], 409);
         }
     }
+
+    public function updateStatusOrder(Request $request, $id)
+    {
+        try {
+            $request->validate([
+                'status' => 'required|in:queue,processed,completed,canceled',
+            ]);
+
+            $order = \App\Models\Order::findOrFail($id);
+
+            // Define the fields and values based on the status
+            $statusFields = [
+                'queue' => ['status', 'queue_on', 'queue_by'],
+                'processed' => ['status', 'processed_on', 'processed_by'],
+                'completed' => ['status', 'completed_on', 'completed_by'],
+                'canceled' => ['status', 'canceled_on', 'canceled_by'],
+            ];
+
+            // Set the fields and values based on the status
+            if (isset($statusFields[$request->input('status')])) {
+                $fieldsToUpdate = $statusFields[$request->input('status')];
+                $updateData = array_combine($fieldsToUpdate, [$request->input('status'), now(), $request->input('update_by')]);
+                $order->update($updateData);
+            } else {
+                // Handle other status values or provide an error message
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Invalid status provided.',
+                ], 422);
+            }
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Status updated successfully',
+                'data' => $order,
+            ]);
+        } catch (ModelNotFoundException $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Order not found.',
+            ], 404);
+        }
+    }
+
+
+    // public function updateStatusOrder(Request $request, $id)
+    // {
+    //     try
+    //     {
+    //         $request->validate([
+    //             'status' => 'required|in:queque,processed,completed,canceled',
+    //         ]);
+
+    //         $order = \App\Models\Order::findOrFail($id);
+    //         $order->update(['status' => $request->input('status')]);
+
+    //         return response()->json([
+    //             'success' => true,
+    //             'message' => 'Status updated successfully',
+    //             'data' => $order,
+    //         ]);
+
+    //     } catch (ModelNotFoundException $e) {
+    //         return response()->json([
+    //             'success' => false,
+    //             'message' => 'Order not found.',
+    //         ], 404);
+    //     }
+    // }
 }

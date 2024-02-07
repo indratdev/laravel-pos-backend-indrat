@@ -28,10 +28,12 @@ class Order extends Model
         'order_items',
         'queue_on',
         'queue_by',
-        'process_on',
-        'process_by',
-        'finish_on',
-        'finish_by',
+        'processed_on',
+        'processed_by',
+        'completed_on',
+        'completed_by',
+        'canceled_on',
+        'canceled_by',
         'deleted'
     ];
 
@@ -49,5 +51,4 @@ class Order extends Model
     {
         return $this->belongsTo(Customers::class, 'customer_id');
     }
-
 }

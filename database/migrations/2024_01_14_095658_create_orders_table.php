@@ -27,15 +27,14 @@ return new class extends Migration
             $table->string('status')->nullable();
             $table->string('status_payment')->nullable();
             $table->timestamp('queue_on')->nullable();
-            $table->timestamp('process_on')->nullable();
-            $table->timestamp('finish_on')->nullable();
-            $table->integer('deleted')->default(0);
             $table->foreignId('queue_by')->nullable()->constrained('users');
-            $table->foreignId('process_by')->nullable()->constrained('users');
-            $table->foreignId('finish_by')->nullable()->constrained('users');
-            // $table->integer('queue_by')->default(0);
-            // $table->integer('process_by')->default(0);
-            // $table->integer('finish_by')->default(0);
+            $table->timestamp('processed_on')->nullable();
+            $table->foreignId('processed_by')->nullable()->constrained('users');
+            $table->timestamp('completed_on')->nullable();
+            $table->foreignId('completed_by')->nullable()->constrained('users');
+            $table->timestamp('canceled_on')->nullable();
+            $table->foreignId('canceled_by')->nullable()->constrained('users');
+            $table->integer('deleted')->default(0);
             $table->timestamps();
         });
     }
