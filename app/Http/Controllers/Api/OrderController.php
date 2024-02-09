@@ -12,7 +12,7 @@ class OrderController extends Controller
     public function index()
     {
         //all orders
-        $orders = \App\Models\Order::with('customers', 'orderItems')->orderBy('id', 'desc')->get();
+        $orders = \App\Models\Order::with('customers', 'orderItems',  'product', 'orderItems.product')->orderBy('id', 'desc')->get();
         return response()->json([
             'success' => true,
             'message' => 'List Data Order',
