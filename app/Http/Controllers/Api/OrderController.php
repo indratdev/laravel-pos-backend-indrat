@@ -33,7 +33,7 @@ class OrderController extends Controller
 
     public function getOrderByStatus($status)
     {
-        $orders = \App\Models\Order::with('customers', 'orderItems')
+        $orders = \App\Models\Order::with('customers', 'orderItems', 'product', 'orderItems.product')
             ->where('status', $status)
             ->where('status_payment', 'paid')
             ->orderBy('id', 'desc')
